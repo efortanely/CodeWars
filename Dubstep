@@ -1,0 +1,12 @@
+def song_decoder(song):
+    global j
+    j = 10
+    song = song.replace("WUB"," ")
+    i = "          "
+    while(i != " "):
+        if i in song:
+            song = song.replace(i," ")
+        j-=1
+        i=i[:j]
+    song = song.strip()
+    return song
