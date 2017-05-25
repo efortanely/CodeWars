@@ -1,0 +1,8 @@
+def find_nb(m):
+    global sum
+    sum = 0
+    for i in range(500000):
+        sum += i**3
+        if sum == m:
+            return i
+    return -1
