@@ -1,0 +1,26 @@
+def done_or_not(board):
+    sum = 0
+    for i in range(1,10): sum += i
+
+    #row sum
+    for r in range(len(board)):
+        rSum = 0
+        for c in range(len(board[0])): rSum += board[r][c]
+        if rSum != sum: return 'Try again!'
+    
+    #column sum
+    for c in range(len(board[0])):
+        cSum = 0
+        for r in range(len(board)): cSum += board[r][c]
+        if cSum != sum: return 'Try again!'    
+        
+    #3x3 grid sum
+    for i in range(0,9,3):
+        for j in range(0,9,3):
+            sSum = 0
+            for r in range(i,i+3):
+                for c in range(j,j+3): 
+                    sSum += board[r][c]
+            if sSum != sum: return 'Try again!'
+
+    return 'Finished!'
