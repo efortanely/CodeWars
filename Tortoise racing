@@ -1,0 +1,12 @@
+import math
+def race(v1, v2, g):
+    if v1 >= v2: return None
+    else:
+        time = [i/60**2 for i in range(1000000)]
+        conv=[]
+        for t in time:
+            if g+v1*t<v2*t:
+                conv.append(math.floor(t))
+                conv.append(math.floor((t*60)-(conv[0]*60)))
+                conv.append(int(round((t*60**2)-(conv[1]*60)-(conv[0]*60**2))) + (-1 if int(round((t*60**2)-(conv[1]*60)-(conv[0]*60**2)))!=0 else 0))
+                return conv
