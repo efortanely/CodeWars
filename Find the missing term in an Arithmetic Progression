@@ -1,0 +1,5 @@
+def find_missing(sequence):
+    dif=(sequence[len(sequence)-1]-sequence[0])/len(sequence)
+    for i in range(len(sequence)):
+        if sequence[i] != sequence[0] + i*dif:
+            return sequence[0] + i*dif
