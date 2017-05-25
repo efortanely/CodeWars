@@ -1,0 +1,11 @@
+from fractions import gcd
+
+def convertFracts(lst):
+    lcm=_lcm(lst[0][1],_lcm(lst[1][1],lst[2][1])) if len(lst)==3 else _lcm(_lcm(lst[0][1],lst[1][1]),_lcm(lst[2][1],lst[3][1]))
+    for i in range(len(lst)):
+        for j in range(len(lst[i])):
+            lst[i][j]=lst[i][j]*(lcm//lst[i][1])
+    return lst
+
+def _lcm(a,b):
+    return a*b // gcd(a, b)
