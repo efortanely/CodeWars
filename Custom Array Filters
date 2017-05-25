@@ -1,0 +1,15 @@
+import __builtin__
+
+class mylist(list):
+    def even(self):
+        return [i for i in self if isinstance(i,int) and i%2==0]
+    def odd(self):
+        return [i for i in self if isinstance(i,int) and i%2!=0]
+    def under(self, max):
+        return [i for i in self if i<max]
+    def over(self, min):
+        return [i for i in self if isinstance(i,int) and i>min]
+    def in_range(self, min, max):
+        return [i for i in self if isinstance(i,int) and min<=i<=max]
+        
+__builtin__.list = mylist
