@@ -1,0 +1,2 @@
+def score_test(tests, right, omit, wrong):
+    return right*tests.count(0)+omit*tests.count(1)-wrong*tests.count(2)
