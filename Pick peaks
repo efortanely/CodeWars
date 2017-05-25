@@ -1,0 +1,23 @@
+def pick_peaks(arr):
+    pos=[]
+    peaks=[]
+    for i in range(1,len(arr)-1):
+        if arr[i-1] < arr[i] > arr[i+1] or (arr[i-1] < arr[i] == arr[i+1] and plateauIsLarge(i,arr) and not touchingEdge(i,arr)):
+            pos.append(i)
+            peaks.append(arr[i])
+    return {'pos': pos, 'peaks': peaks}
+
+
+def touchingEdge(ind,array):
+    for i in range(ind,len(array)):
+        if str(array[i]) in "0123456789".replace(str(array[i]),""):
+            return True
+    return False
+    
+def plateauIsLarge(ind,array):
+    for i in range(ind,len(array)):
+        if array[i] != array[ind]:
+            if array[ind] > array[i]:
+                return True
+            else: return False
+    return False
