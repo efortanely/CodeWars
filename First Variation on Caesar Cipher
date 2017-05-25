@@ -1,0 +1,31 @@
+import re
+
+def moving_shift(s, shift):
+    chrctrs = shift_letters(list(s), shift, "forward")
+        
+    phrases=[""]*5
+    
+    rg=[len(chrctrs)]
+    for i in range(len(phrases)-1,-1,-1): rg.insert(0, i * (len(chrctrs)//5 + (1 if len(chrctrs)%5!=0 else 0)) )
+    
+    for i in range(len(rg)-1):
+        for j in range(rg[i], rg[i+1]):
+            phrases[i]=phrases[i]+chrctrs[j]
+    
+    return phrases
+    
+
+def demoving_shift(s, shift):
+    return "".join(shift_letters(list("".join(s)), shift, "backward"))
+    
+def shift_letters(phrase, shift, direction):
+    for i in range(len(phrase)):
+        if re.search(r'[a-zA-Z]',phrase[i]):
+            letter = ( ord(phrase[i]) + (shift+i) % 26 ) if direction=="forward" else ( ord(phrase[i]) - (shift+i) % 26 )
+            if ( ( re.search(r'[A-Z]',phrase[i]) and letter > ord('Z') ) if direction=="forward"\
+            else ( re.search(r'[A-Z]',phrase[i]) and letter < ord('A') ) )\
+            or ( ( re.search(r'[a-z]',phrase[i]) and letter > ord('z') ) if direction=="forward"\
+            else ( re.search(r'[a-z]',phrase[i]) and letter < ord('a') ) ): 
+                letter += -26 if direction =="forward" else 26
+            phrase[i]=chr(letter)
+    return phrase
