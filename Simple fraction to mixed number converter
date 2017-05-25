@@ -1,0 +1,38 @@
+import math
+import fractions
+
+def mixed_fraction(s):
+    pec = s.split("/")
+    num=0
+    if int(pec[1]) == 0:
+        raise ZeroDivisionError("Divide by zero")
+        return False
+    
+    if int(pec[0])>0 and int(pec[1])<0:
+        pec[0]=int(pec[0])*-1
+        pec[1]=int(pec[1])*-1
+    
+    if int(pec[0])<0 and int(pec[1])<0:
+        pec[0]=int(pec[0])*-1
+        pec[1]=int(pec[1])*-1
+        num=int(pec[0])/int(pec[1])
+        pec[0]=int(pec[0])-num*int(pec[1])
+    elif int(pec[0]) > 0:
+        num=int(pec[0])/int(pec[1])
+        pec[0]=int(pec[0])-num*int(pec[1])
+    elif int(pec[0]) < 0:
+        num=int(math.ceil(float(pec[0])/int(pec[1])))
+        if num != 0:
+            pec[0] = int(pec[0]) * -1
+            pec[0]=int(pec[0])+num*int(pec[1])
+        else:
+            pec[0]=int(pec[0])+num*int(pec[1])
+    
+    if int(pec[0]) == 0:
+        return str(num)
+    else:    
+        gcd = fractions.gcd(int(pec[0]),int(pec[1]))
+        pec[0]=int(pec[0])/gcd
+        pec[1]=int(pec[1])/gcd
+    if num==0: return str(pec[0])+"/"+str(pec[1])
+    else: return str(num)+" "+str(pec[0])+"/"+str(pec[1])
