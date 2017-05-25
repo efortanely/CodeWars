@@ -1,0 +1,9 @@
+import re
+
+def to_weird_case(string):
+    to_list = list(string)
+    char_found=0
+    for i in range(len(to_list)):
+        to_list[i] = to_list[i].upper() if char_found%2==0 else to_list[i].lower()
+        char_found = 0 if re.search(r"[\s]", to_list[i]) else char_found + 1
+    return "".join(to_list)
