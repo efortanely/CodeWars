@@ -1,0 +1,8 @@
+def get_function(sequence):
+    dif=sequence[1]-sequence[0]
+    if any(i for i in range(len(sequence)) if sequence[i] != sequence[0] + i*dif):
+        return "Non-linear sequence"
+    if dif==0:  return "f(x) = " + str(sequence[0])
+    if dif==1:  return "f(x) = x " + ("+ " if sequence[0]>=0 else "- ") + str(abs(sequence[0])) if sequence[0]!=0 else "f(x) = x"
+    if dif==-1: return "f(x) = -x " + ("+ " if sequence[0]>=0 else "- ") + str(abs(sequence[0])) if sequence[0]!=0 else "f(x) = -x"
+    return "f(x) = " + str(dif) + "x " + ("+ " if sequence[0]>=0 else "- ") + str(abs(sequence[0])) if sequence[0]!=0 else "f(x) = " + str(dif) + "x"
