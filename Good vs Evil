@@ -1,0 +1,18 @@
+def goodVsEvil(good, evil):
+    global gSum, eSum
+    gSum = 0
+    eSum = 0
+    g = good.split(" ")
+    e = evil.split(" ")
+    gW = [1,2,3,3,4,10]
+    eW = [1,2,2,2,3,5,10]
+    for i in range (7):
+        if i < 6 : 
+            gSum += int(g[i])*gW[i]
+        eSum += int(e[i])*eW[i]
+    if eSum > gSum:
+        return "Battle Result: Evil eradicates all trace of Good"
+    elif gSum > eSum:
+        return "Battle Result: Good triumphs over Evil"
+    else:
+        return "Battle Result: No victor on this battle field"
