@@ -1,0 +1,8 @@
+def anagrams(word, words):
+    found=words+[]
+    for w in words:
+        for l in word:
+            if word.count(l)!=w.count(l) or len(w) != len(word):
+                if w in found:
+                    found.remove(w)
+    return found
