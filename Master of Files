@@ -1,0 +1,9 @@
+import re
+def is_audio(file_name):
+    return check_file(file_name,"mp3|flac|alac|aac")
+
+def is_img(file_name):
+    return check_file(file_name,"jpg|jpeg|png|bmp|gif")
+
+def check_file(name, ext):
+    return bool(re.match('[a-zA-Z]+.(%s)$' % ext, name))
