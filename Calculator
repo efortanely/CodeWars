@@ -1,0 +1,26 @@
+import re
+
+class Calculator(object):
+  def evaluate(self, string):
+    terms = re.split("([+-/*])",string.replace(" ", ""))
+    p = 1
+    while "." in terms:
+        if len(terms) > 1 and terms[p] == ".":
+            terms[p-1] = float(str(terms[p-1]) + str(terms[p]) + str(terms[p+1]))
+            for i in range(2): del terms[p]
+        if "." in terms and terms[p] != ".": p += 2
+    
+    self.comb("/","*", terms)
+    self.comb("+","-", terms)               
+
+    if len(str(terms[0])) > 4: return float("%.3f" % terms[0])
+    return float(terms[0])
+    
+  def comb(self, op1, op2, terms):
+    p = 1
+    while op1 in terms or op2 in terms:          
+        if terms[p] == op1 or terms[p] == op2:
+            if op1 == "/" and op2 == "*": terms[p-1] = ( float(terms[p-1]) / float(terms[p+1]) ) if terms[p] == op1 else ( float(terms[p-1]) * float(terms[p+1]) )
+            else: terms[p-1] = ( float(terms[p-1]) + float(terms[p+1]) ) if terms[p] == op1 else ( float(terms[p-1]) - float(terms[p+1]) )
+            for i in range(2): del terms[p]
+        if (op1 in terms or op2 in terms) and not(terms[p] == op1 or terms[p] == op2): p += 2
